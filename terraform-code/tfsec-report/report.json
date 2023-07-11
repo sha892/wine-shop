@@ -1,0 +1,28 @@
+{
+	"results": [
+		{
+			"rule_id": "AVD-GCP-0027",
+			"long_id": "google-compute-no-public-ingress",
+			"rule_description": "An inbound firewall rule allows traffic from /0.",
+			"rule_provider": "google",
+			"rule_service": "compute",
+			"impact": "The port is exposed for ingress from the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.1/checks/google/compute/no-public-ingress/",
+				"https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#source_ranges",
+				"https://www.terraform.io/docs/providers/google/r/compute_firewall.html"
+			],
+			"description": "Firewall rule allows ingress traffic from multiple addresses on the public internet.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "google_compute_firewall.allow-all",
+			"location": {
+				"filename": "D:\\DATA\\Terraform\\GCP\\Terraform_GCP\\network.tf",
+				"start_line": 37,
+				"end_line": 37
+			}
+		}
+	]
+}
