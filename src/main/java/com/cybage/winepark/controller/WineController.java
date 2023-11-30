@@ -23,7 +23,7 @@ import java.io.InputStreamReader;
 @RequestMapping("wine")
 @Slf4j
 @AllArgsConstructor
-public class WineContr {
+public class WineController {
     WineService wineService;
     WineServiceImpl wineServiceImpl;
     static final String HEADERS = "Host Info";
@@ -60,67 +60,3 @@ public class WineContr {
     }
 
     @PostMapping("add")
-    public  ResponseEntity<String> addWine(@RequestBody WineDto wineDto) {
-        log.info("CONTROLLER: addWine");
-        Wine wine=wineServiceImpl.wineDtoToWine(wineDto);
-        wineService.addWine(wine);
-        String osInfo= wineServiceImpl.getOperatingSystemInfo();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HEADERS, osInfo);
-        return new ResponseEntity<>("wine added successfully...",headers, HttpStatus.OK);
-    }
-
-    @PutMapping("updateWine/{id}")
-    public  ResponseEntity<String> updateWine(@PathVariable("id") Integer id,@RequestBody WineDto wineDto) {
-        log.info("CONTROLLER: updateWine");
-        Wine wine=wineServiceImpl.wineDtoToWine(wineDto);
-        wine.setWineId(id);
-        wineService.updateWine(wine);
-        String osInfo= wineServiceImpl.getOperatingSystemInfo();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HEADERS, osInfo);
-        return new ResponseEntity<>("wine updated successfully...",headers, HttpStatus.OK);
-    }
-
-
-
-    @DeleteMapping("deleteWine/{id}")
-    public  ResponseEntity<String> deleteWine(@PathVariable("id") Integer id) {
-        log.info("CONTROLLER: deleteWine");
-        wineService.deleteWine(id);
-        String osInfo= wineServiceImpl.getOperatingSystemInfo();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HEADERS, osInfo);
-        return new ResponseEntity<>("wine deleted successfully...",headers, HttpStatus.OK);
-    }
-
-
-    private String getMetadata(String path) {
-        String metadataUrl = "http://metadata.google.internal/computeMetadata/v1/" + path;
-
-        try {
-            URL url = new URL(metadataUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty("Metadata-Flavor", "Google");
-
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String response = reader.readLine();
-                reader.close();
-                return response;
-            } else {
-                // Handle error response
-            }
-        } catch (Exception e) {
-            // Handle exception
-        }
-
-        return null;
-    }
-}
-
-
-
-
-
-
