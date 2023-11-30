@@ -23,7 +23,7 @@ import java.io.InputStreamReader;
 @RequestMapping("wine")
 @Slf4j
 @AllArgsConstructor
-public class WineController {
+public class WineContr {
     WineService wineService;
     WineServiceImpl wineServiceImpl;
     static final String HEADERS = "Host Info";
