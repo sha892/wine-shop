@@ -2,9 +2,9 @@
   spring:
    datasource:
      driver-class-name: com.mysql.cj.jdbc.Driver
-     url: jdbc:mysql://db-instance.cbet5mhpxzpr.us-east-1.rds.amazonaws.com:3306/wine
-     username: admin
-     password: password
+     url: jdbc:mysql://35.153.78.226:3306/employees
+     username: root
+     password: root
    jpa:
      hibernate:
        ddl-auto: update
