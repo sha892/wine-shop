@@ -58,5 +58,4 @@ public class WineController {
         headers.add(HEADERS, osInfo);
         return new ResponseEntity<>(wine,headers, HttpStatus.OK);
     }
-
-    @PostMapping("add")
+}
